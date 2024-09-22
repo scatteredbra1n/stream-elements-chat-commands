@@ -9,7 +9,7 @@ app.get("/yt-video/:channelId", async (req, res) => {
     const channelId = req.params.channelId;
 
     if (!channelId) {
-        return res.status(400).send(snarkyError());
+        return res.status(200).send(snarkyError());
     }
 
     try {
@@ -19,7 +19,7 @@ app.get("/yt-video/:channelId", async (req, res) => {
 
         parser.parseString(response.data, function (err, result) {
             if (err) {
-                return res.status(500).send(`Yikes, I hit a technical snag, try again in a bit`);
+                return res.status(200).send(`Yikes, I hit a technical snag, try again in a bit`);
             }
 
             const latestVideo = result.feed.entry[0];
@@ -30,7 +30,7 @@ app.get("/yt-video/:channelId", async (req, res) => {
 
         });
     } catch (error) {
-        res.status(500).send(snarkyError());
+        res.status(200).send(snarkyError());
     }
 });
 
