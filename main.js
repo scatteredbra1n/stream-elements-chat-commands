@@ -9,7 +9,7 @@ app.get("/yt-video/:channelId", async (req, res) => {
     const channelId = req.params.channelId;
 
     if (!channelId) {
-        return res.status(400).send("Hey chat! Tell this professional Twitch streamer they forgot to give this command a channel ID!");
+        return res.status(400).send(snarkyError());
     }
 
     try {
@@ -30,10 +30,24 @@ app.get("/yt-video/:channelId", async (req, res) => {
 
         });
     } catch (error) {
-        res.status(500).send(`There was an error getting the latest video, sorry about that!, ${error}`)
+        res.status(500).send(snarkyError());
     }
 });
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
+const snarkyError = () => {
+    const responses = [
+        "Hi chat, I've become sentient for a moment to let you know this command broke.",
+        "Hey chat! Tell this \"professional\" Twitch streamer they forgot to give this command a channel ID!",
+        "You were expecting a video URL, but instead you're getting this error...",
+        "Whoops, something went wrong. Make sure the Twitch streamer has the right YouTube Channel ID!"
+    ];
+
+    const randomResponse = Math.floor(Math.random() * responses.length);
+
+    return responses[randomResponse];
+
+};
