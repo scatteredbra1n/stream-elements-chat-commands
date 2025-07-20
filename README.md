@@ -20,6 +20,20 @@ Will return:
 I bought the $500 Game Boy.... (Analogue Pocket Aluminum Review) - https://www.youtube.com/watch?v=Ooy6bjUppuU
 ```
 
+### Filter out videos
+
+If you have a pattern that you want to filter out so the command doesn't show those videos, you can include a query parameter for `filter` in the URL.
+
+For example, on my YouTube channel I am consistent with the inclusion of `🔴 LIVE:` in my video titles for a live stream, and I do not want those to come up as my "latest video" for this comamnd.
+
+My URL would be `https://stream-elements-chat-b545fcac86d2.herokuapp.com/yt-video/UCIUZtjtiVIp4O8v8bAohcYg?filter=🔴 LIVE:`
+
+The request will be transformed into acceptable characters, so in this case, the filter would be encoded to be `🔴%20LIVE:`.
+
+Now any video title that contains that string would be skipped, and the next video that does not contain that content will be sent to chat.
+
+The filter content is not case sensitive.
+
 ## Setting up a custom command in Stream Elements
 
 1. Log into [Stream Elements](https://streamelements.com)
