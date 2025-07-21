@@ -39,10 +39,10 @@ app.get("/yt-video/:channelId", async (req, res) => {
 
                 if (filter) {
                     if (!video.title.toString().toUpperCase().includes(filter)) {
-                        return res.send(chatMessage);
+                        return res.status(200).send(chatMessage);
                     }
                 } else {
-                    return res.send(chatMessage);
+                    return res.status(200).send(chatMessage);
                 }
 
             }
